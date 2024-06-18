@@ -1,27 +1,23 @@
+enum FIZZBUZZ {
+    fizz = 'fizz',
+    buzz = 'buzz'
+}
+
 export const fizzBuzz = (number: number) => {
-    let result: string | void = '';
-    result = isFizz(number);
-    result = isBuzz(number, result);
-    return result ? result : number;
+    const testFizz = compute(number, 3);
+    const testBuzz = compute(number, 5);
+
+    if (testFizz || testBuzz) {
+        return testFizz + testBuzz;
+    } else {
+        return number;
+    }
 };
 
-const isFizz = (number: number): void | string => {
-    const FIZZ = 'fizz';
-
+const compute = (number: number, target: 3 | 5): string => {
     const text = number.toString().split('');
-    if (number % 3 === 0 || text.includes('3')) {
-        return FIZZ;
+    if (number % target === 0 || text.includes(target.toString())) {
+        return target === 3 ? 'fizz' : 'buzz';
     }
     return '';
 };
-
-const isBuzz = (number: number, result: string | void): void | string => {
-    const BUZZ = 'buzz';
-    const text = number.toString().split('');
-    if (number % 5 === 0 || text.includes('5')) {
-        return result + BUZZ;
-    }
-    return result;
-};
-
-
